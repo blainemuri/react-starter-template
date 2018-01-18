@@ -1,36 +1,39 @@
 const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin')
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: './client/index.html',
   filename: 'index.html',
   inject: 'body'
 })
-const DirectoryNamedWebpackPluginConfig = new DirectoryNamedWebpackPlugin({
-  exclude: /node_modules/,
-  transformFn: function(dirName, dirPath, webpackResolveRequest) {
-    return dirName + '/index.jsx'
-    return ['index.jsx', 'index.js']
-  }
-})
+const ReactPlugin = new webpack.ProvidePlugin({ React: 'react' })
+
+let cssLoaderQuery = 'css-loader?modules'
+if (process.env.NODE_ENV !== 'production') {
+  cssLoaderQuery += '&localIdentName=[path][name]---[local]'
+}
 
 var config = {
-  context: __dirname + '/', // `__dirname` is root of project
+  context: __dirname + '/',
   entry: './client/index.js',
   output: {
     path: path.resolve('dist'),
-    filename: 'index.bundle.js',
+    filename: '[hash].js',
+    publicPath: '/'
   },
   devServer: {
-    open: true, // to open the local server in browser
+    port: 3000,
     contentBase: __dirname + '/',
+  },
+  resolve: {
+    modules: [__dirname, 'node_modules'],
+    extensions: ['.jsx', '.js']
   },
   module: {
     rules: [
       {
-        test: /\.jsx$/, //Check for all js files
+        test: /\.jsx$/,
         loader: 'babel-loader',
         query: {
           presets: [ "babel-preset-es2015" ].map(require.resolve)
@@ -38,7 +41,7 @@ var config = {
         exclude: /node_modules/,
       },
       {
-        test: /\.js$/, //Check for all js files
+        test: /\.js$/,
         loader: 'babel-loader',
         query: {
           presets: [ "babel-preset-es2015" ].map(require.resolve)
@@ -47,11 +50,11 @@ var config = {
       },
       {
         test: /\.styl/,
-        use: ['style-loader', 'css-loader', 'stylus-loader']
+        use: ['style-loader', cssLoaderQuery, 'postcss-loader', 'stylus-loader?resolve url']
       }
     ]
   },
-  plugins: [HtmlWebpackPluginConfig, DirectoryNamedWebpackPluginConfig]
+  plugins: [HtmlWebpackPluginConfig, ReactPlugin]
 }
 
 module.exports = config
