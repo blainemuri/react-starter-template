@@ -10,6 +10,8 @@
     "babel-core": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "css-loader": "^0.28.8",
+    "eslint": "^4.15.0",
+    "eslint-config-airbnb": "^16.1.0",
     "lodash": "^4.17.4",
     "postcss-loader": "^2.0.10",
     "react": "^16.2.0",
@@ -19,9 +21,13 @@
     "webpack-dev-server": "^2.11.0"
   },
   "dependencies": {
+    "babel-eslint": "^8.2.1",
     "babel-loader": "^7.1.2",
     "babel-preset-react": "^6.24.1",
     "directory-named-webpack-plugin": "^2.3.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
     "html-webpack-plugin": "^2.30.1",
     "path": "^0.12.7",
     "postcss-opacity": "^5.0.0",
@@ -30,6 +36,9 @@
   },
   "scripts": {
     "start": "webpack-dev-server --hot",
-    "build": "NODE_ENV=production webpack -p --config webpack.config.js"
+    "build": "NODE_ENV=production webpack -p --config webpack.config.js",
+    "lint-js": "eslint -c .eslintrc.json . --fix --ignore-path .eslintignore_spec",
+    "lint-jsx": "eslint -c .eslintrc.json . --fix --ext .jsx --ignore-path .eslintignore_spec",
+    "lint-styles": "stylint ./src"
   }
 }

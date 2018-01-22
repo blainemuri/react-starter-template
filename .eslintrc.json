@@ -1,0 +1,69 @@
+{
+    "extends": ["airbnb"],
+    "plugins": [
+      "react",
+      "jsx-a11y",
+      "import"
+    ],
+    "env": {
+      "node": true,
+      "mocha": true,
+      "browser": true
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "globals": {
+      "document": true,
+      "window": true,
+      "expect": true,
+      "React": true
+    },
+    "rules": {
+        "arrow-body-style": "off",
+        "consistent-return": "off",
+        "class-methods-use-this": "off",
+        "func-names": ["error", "never"],
+        "guard-for-in": "off",
+        "global-require": "off",
+        "max-len": "off",
+        "no-await-in-loop": "off",
+        "no-confusing-arrow": "off",
+        "no-console": "off",
+        "no-mixed-operators": "off",
+        "no-plusplus": "off",
+        "no-return-await": "warn",
+        "no-restricted-syntax": [
+            "error",
+            "LabeledStatement",
+            "WithStatement"
+        ],
+        "no-return-assign": "off",
+        "no-underscore-dangle": "off",
+        "no-unused-expressions": ["error", {
+          "allowTernary": true
+        }],
+        "no-unused-vars": "warn",
+        "padding-line-between-statements": "off",
+        "quotes": "warn",
+
+        "jsx-a11y/no-static-element-interactions": "off",
+        "jsx-a11y/label-has-for": "off",
+
+        "import/extensions": "off",
+        "import/no-extraneous-dependencies": [2, { "devDependencies": true }],
+        "import/no-named-as-default": "off",
+        "import/no-dynamic-require": "off",
+        "import/no-unresolved": "off",
+
+        "react/class-methods-use-this": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/require-default-props": "off",
+        "react/sort-comp": "off",
+        "react/jsx-no-bind": "off",
+        "react/jsx-wrap-multilines": "off"
+    }
+}

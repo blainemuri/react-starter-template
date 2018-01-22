@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import './index.styl'
+import './index.styl';
 
 ReactDOM.render(<App />, document.getElementById('root'));
