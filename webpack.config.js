@@ -16,7 +16,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const config = {
   context: `${__dirname}/`,
-  entry: './client/index.js',
+  entry: './client/index.jsx',
   output: {
     path: path.resolve('dist'),
     filename: '[hash].js',
